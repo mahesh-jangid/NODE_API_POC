@@ -31,6 +31,7 @@ app.use(
 app.use("/api/users", userRoutes);
 app.use("/api/employee", employeeRoutes);
 
+const __dirname = path.resolve();
 app.use(express.static(path.join(__dirname, 'dist/')));
 
 // Serve index.html for all routes
