@@ -31,13 +31,13 @@ app.use(
 app.use("/api/users", userRoutes);
 app.use("/api/employee", employeeRoutes);
 
-const __dirname = path.resolve();
-app.use(express.static(path.join(__dirname, 'dist/blog')));
+// const __dirname = path.resolve();
+// app.use(express.static(path.join(__dirname, 'dist/blog')));
 
-// Serve index.html for all routes
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist/blog/index.html'));
-});
+// // Serve index.html for all routes
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'dist/blog/index.html'));
+// });
   app.get("/", (req, res) => {
     res.send("API is Running....");
   });
