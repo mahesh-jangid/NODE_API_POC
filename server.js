@@ -32,11 +32,11 @@ app.use("/api/users", userRoutes);
 app.use("/api/employee", employeeRoutes);
 
 const __dirname = path.resolve();
-app.use(express.static(path.join(__dirname, 'dist/')));
+app.use(express.static(path.join('dist/')));
 
 // Serve index.html for all routes
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist/index.html'));
+  res.sendFile(path.join('dist/index.html'));
 });
   app.get("/", (req, res) => {
     res.send("API is Running....");
