@@ -37,7 +37,7 @@ const __dirname = path.resolve();
     res.send("API is Running....");
   });
 
-const PORT =  process.env.NODE_ENV || 4323;
+const PORT =  4323;
 app.listen(
   PORT,
   console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`)
