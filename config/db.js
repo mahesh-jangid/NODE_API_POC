@@ -1,7 +1,7 @@
 import mongose from "mongoose";
 const connectDB = async () => {
   try {
-    const conn = await mongose.connect(process.env.MONGO_URI, {
+    const conn = await mongose.connect(process.env.MONGO_URI || "mongodb+srv://MaheshJ:1234@cluster0.ecrkt.mongodb.net/nodepoc?retryWrites=true&w=majority", {
       useUnifiedTopology: true,
       useNewUrlParser: true,
     });
