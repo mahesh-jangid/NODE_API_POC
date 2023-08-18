@@ -3,15 +3,15 @@ import generateToken from "../utils/generateToken.js";
 import User from "../models/userModel.js";
 
 const authUser = asyncHandler(async (req, res) => {
-  const { email, password } = req.body;
+  const { Email, Password } = req.body;
+console.log("dsd",Email,Password)
+  const user = await User.findOne({ Email });
 
-  const user = await User.findOne({ email });
-
-  if (user && (await user.matchPassword(password))) {
+  if (user && (await user.matchPassword(Password))) {
     res.json({
       _id: user._id,
-      name: user.name,
-      email: user.email,
+      Username: user.Username,
+      Email: user.Email,
       token: generateToken(user._id),
       message: "Login success",
     });
@@ -21,27 +21,29 @@ const authUser = asyncHandler(async (req, res) => {
 });
 
 const registerUser = asyncHandler(async (req, res) => {
-  const { name, email, password ,address} = req.body;
+  const { Username, Email, Password ,Address,Mobile} = req.body;
 
-  const userExists = await User.findOne({ email });
+  const userExists = await User.findOne({ Email });
 
   if (userExists) {
     res.status(400).json({message:"User already exists"});
   }
 
   const user = await User.create({
-    name,
-    email,
-    password,
-    address
+    Username,
+    Email,
+    Password,
+    Address,
+    Mobile
   });
 
   if (user) {
     res.status(201).json({
       _id: user._id,
-      name: user.name,
-      email: user.email,
-      address,
+      Username: user.Usernameame,
+      Email: user.Email,
+      Address,
+      Mobile,
       token: generateToken(user._id),
       message: "Register success",
     });
@@ -54,14 +56,14 @@ const updateUser = asyncHandler(async (req, res) => {
   const user = await User.findById(req.params.id);
 
   if (user) {
-    user.name = req.body.name || user.name;
-    user.email = req.body.email || user.email;
+    user.Username = req.body.Username || user.Username;
+    user.Email = req.body.Email || user.Email;
 
     const updatedUser = await user.save();
     res.json({
       _id: updatedUser._id,
-      name: updatedUser.name,
-      email: updatedUser.email,
+      Username: updatedUser.Username,
+      Email: updatedUser.Email,
     });
   } else {
     res.status(404);
